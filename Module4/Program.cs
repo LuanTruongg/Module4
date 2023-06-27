@@ -29,8 +29,14 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapGet("/todoitems", async (ToDoContext _context) => 
-    await _context.ToDoItems.ToListAsync());
+//Sao ko xài ?c ta ??????
+//app.MapGroup("/todoitems", Group =>
+//{
+
+//});
+
+app.MapGet("/todoitems", async (ToDoContext _context) =>
+    await _context.ToDoItems.ToListAsync();
 
 app.MapGet("/todoitems/complete", async (ToDoContext _context) => 
     await _context.ToDoItems.Where(x => x.IsComplete).ToListAsync());
@@ -78,3 +84,13 @@ app.MapDelete("/todoitems/{id}", async (int id, ToDoContext _context) => {
 });
 
 app.Run();
+
+static async Task<IResult> GetAll(ToDoContext _context)
+{
+    return Results.Ok(await _context.ToDoItems.ToListAsync());
+}
+
+static async Task<IResult> Get(ToDoContext _context)
+{
+    return Results.Ok();
+}
