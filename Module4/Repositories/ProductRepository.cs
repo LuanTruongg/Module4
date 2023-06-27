@@ -12,9 +12,31 @@ namespace Module4.Repositories
         {
             _context = context;
         }
+
+        public async Task AddAsync(Product product)
+        {
+            await _context.AddAsync(product);
+        }
+
+        public async Task<Product> GetById(int id)
+        {
+            var product = await _context.Products.FindAsync(id);
+            return product;
+        }
+
         public async Task<IEnumerable<Product>> ListAsync()
         {
             return await _context.Products.Include(x => x.Category).ToListAsync();
+        }
+
+        public void PutAsync(Product product)
+        {
+            _context.Products.Update(product);
+        }
+
+        public void RemoveAsync(Product product)
+        {
+            _context.Products.Remove(product);
         }
     }
 }

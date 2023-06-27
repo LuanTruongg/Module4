@@ -14,6 +14,7 @@ namespace Module4.Configurations
             builder.Property(x => x.Name).IsRequired().HasMaxLength(30);
             builder.Property(x => x.UnitOfMeasurement).IsRequired();
             builder.Property(x => x.QuantityInPackage).IsRequired();
+            builder.HasOne(x=>x.Category).WithMany(x => x.Products).HasForeignKey(x => x.CategoryId);
         }
     }
 }

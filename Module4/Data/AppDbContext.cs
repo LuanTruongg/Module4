@@ -21,6 +21,7 @@ namespace Module4.Data
         {
             base.OnModelCreating(builder);
             builder.ApplyConfiguration(new CategoryConfig());
+            builder.ApplyConfiguration(new ProductConfig());
 
             builder.Seed();
         }
