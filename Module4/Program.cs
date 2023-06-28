@@ -21,21 +21,21 @@ if (app.Environment.IsDevelopment())
 }
 //SeedData.Seed(app);
 app.UseHttpsRedirection();
+app.UseStaticFiles();
+// app.UseCookiePolicy();
 
+app.UseRouting();
+// app.UseRateLimiter();
+// app.UseRequestLocalization();
+// app.UseCors();
+
+app.UseAuthentication();
 app.UseAuthorization();
+// app.UseSession();
+// app.UseResponseCompression();
+// app.UseResponseCaching();
 
-app.MapControllers();
-
-app.Use(async (context, next) =>
-{
-    await context.Response.WriteAsync("Hello world 1");
-    await next.Invoke();
-    // Do logging or other work that doesn't write to the Response.
-});
-
-app.Run(async context =>
-{
-    await context.Response.WriteAsync("Hello world 2");
-});
+//app.MapRazorPages();
+app.MapDefaultControllerRoute();
 
 app.Run();
