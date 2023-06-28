@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using Module4.Data;
+using Module4.Middlewares;
 using Module4.Repositories;
 using Module4.Services;
 using System.Reflection.Metadata;
@@ -42,5 +43,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.UseMiddleware<RequestTimingMiddleware>();
 app.Run();
