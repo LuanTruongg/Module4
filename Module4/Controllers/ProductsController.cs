@@ -29,9 +29,11 @@ namespace Module4.Controllers
         // GET: api/<ProductsController>
 
         [HttpGet]
-        [Test2Filter("Get All Products")]
-        [TestAsyncFilter("Get All Async" , order:10)]
+        
+        [Test2Filter("Get All Products")]        
+        //[TestAsyncFilter("Get All Async" , order:0)]
         [Test2AsyncFilter("Get All 2 Async")]
+        [ShortCircuitingResourceFilter]
         public async Task<IEnumerable<ProductResource>> GetAllAsync()
         {
             Console.WriteLine("Hello from Controller Action");
