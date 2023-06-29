@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Module4.Extensions;
+using Module4.Filter;
 using Module4.Models;
 using Module4.Repositories;
 using Module4.Resource;
@@ -13,6 +14,7 @@ namespace Module4.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
+    [Test2Filter("ProductController")]
     public class ProductsController : ControllerBase
     {
         private readonly ICategoryRepository _categoryRepository;
@@ -25,9 +27,14 @@ namespace Module4.Controllers
             _categoryRepository = categoryRepository;
         }
         // GET: api/<ProductsController>
+
         [HttpGet]
+        [Test2Filter("Get All Products")]
+        [TestAsyncFilter("Get All Async" , order:10)]
+        [Test2AsyncFilter("Get All 2 Async")]
         public async Task<IEnumerable<ProductResource>> GetAllAsync()
         {
+            Console.WriteLine("Hello from Controller Action");
             var products = await _productService.ListAsync();
             var resource = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductResource>>(products); 
             return resource;
