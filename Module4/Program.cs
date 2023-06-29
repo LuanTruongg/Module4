@@ -36,7 +36,7 @@ app.MapControllers();
 //});
 
 app.MapGet("/todoitems", async (ToDoContext _context) =>
-    await _context.ToDoItems.ToListAsync();
+    await _context.ToDoItems.ToListAsync());
 
 app.MapGet("/todoitems/complete", async (ToDoContext _context) => 
     await _context.ToDoItems.Where(x => x.IsComplete).ToListAsync());
