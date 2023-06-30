@@ -27,10 +27,10 @@ builder.Services
 
 //-----------------------------------------------------------------------------
 
-foreach (var c in builder.Configuration.AsEnumerable())
-{
-    Console.WriteLine(c.Key + " = " + c.Value);
-}
+//foreach (var c in builder.Configuration.AsEnumerable())
+//{
+//    Console.WriteLine(c.Key + " = " + c.Value);
+//}
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

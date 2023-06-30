@@ -10,7 +10,7 @@ namespace Module4.Controllers
         private readonly IConfiguration _configutarion;
         private readonly IOptions<PositionOptions> _options;
 
-        //public PositionOption? positionOptions { get; private set; }
+        public PositionOptions? positionOptions { get; private set; }
 
         public HomeController(IConfiguration configuration, IOptions<PositionOptions> options)
         {
@@ -19,11 +19,12 @@ namespace Module4.Controllers
         }
         public IActionResult Index()
         {
-            //positionOptions = _configutarion.GetSection(PositionOption.Position)
-            //                                        .Get<PositionOption>();
-            //return Content($"Title: {positionOptions.Title} \n" +
-            //          $"Name: {positionOptions.Name}");
-            return Ok();
+            positionOptions = _configutarion.GetSection(PositionOptions.Position)
+                                                    .Get<PositionOptions>();
+            return Content($"MyKey: {_configutarion["MyKey"]} \n" + 
+                    $"Title: {positionOptions.Title} \n" +
+                      $"Name: {positionOptions.Name}");
+            //return Ok();
         }
         public IActionResult Index2()
         {
