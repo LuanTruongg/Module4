@@ -8,11 +8,11 @@ namespace Module4.Controllers
     public class HomeController : Controller
     {
         private readonly IConfiguration _configutarion;
-        private readonly IOptions<PositionOption> _options;
+        private readonly IOptions<PositionOptions> _options;
 
         //public PositionOption? positionOptions { get; private set; }
 
-        public HomeController(IConfiguration configuration, IOptions<PositionOption> options)
+        public HomeController(IConfiguration configuration, IOptions<PositionOptions> options)
         {
             _configutarion = configuration;   
             _options = options;

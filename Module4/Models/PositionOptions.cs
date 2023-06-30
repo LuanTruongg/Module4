@@ -1,6 +1,6 @@
 ﻿namespace Module4.Models
 {
-    public class PositionOption
+    public class PositionOptions
     {
         public const string Position = "Position";
 
