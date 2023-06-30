@@ -1,28 +1,34 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using Module4.Models;
 
 namespace Module4.Controllers
 {
     public class HomeController : Controller
     {
         private readonly IConfiguration _configutarion;
+        private readonly IOptions<PositionOption> _options;
 
-        public HomeController(IConfiguration configuration)
+        //public PositionOption? positionOptions { get; private set; }
+
+        public HomeController(IConfiguration configuration, IOptions<PositionOption> options)
         {
             _configutarion = configuration;   
+            _options = options;
         }
         public IActionResult Index()
         {
-            var myKeyValue = _configutarion["MyKey"];
-            var title = _configutarion["Position:Title"];
-            var name = _configutarion["Position:Name"];
-            var defaultLogLevel = _configutarion["Logging:LogLevel:Default"];
-
-
-            return Content($"MyKey value: {myKeyValue} \n" +
-                           $"Title: {title} \n" +
-                           $"Name: {name} \n" +
-                           $"Default Log Level: {defaultLogLevel}");
-            
+            //positionOptions = _configutarion.GetSection(PositionOption.Position)
+            //                                        .Get<PositionOption>();
+            //return Content($"Title: {positionOptions.Title} \n" +
+            //          $"Name: {positionOptions.Name}");
+            return Ok();
+        }
+        public IActionResult Index2()
+        {
+            return Content($"Title: {_options.Value.Title} \n" +
+                      $"Name: {_options.Value.Name}");
         }
     }
 }
