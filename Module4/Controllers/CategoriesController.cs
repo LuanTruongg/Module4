@@ -4,6 +4,7 @@ using Module4.Extensions;
 using Module4.Models;
 using Module4.Services;
 using Module4.Resource;
+using Module4.Filter;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -23,6 +24,9 @@ namespace Module4.Controllers
 
         // GET: api/<CategoriesController>
         [HttpGet]
+        //[ServiceFilter(typeof(LoggingResponseHeaderFilterService))]
+        //[TypeFilter(typeof(LoggingResponseHeaderFilterService), Arguments = new Object[] { "Filter-Header", "Filter-Value"})]
+        //[TypeFilter(typeof(LoggingResponseHeaderFilterService))]
         public async Task<IEnumerable<CategoryResource>> GetAllAsync()
         {
             var categories = await _categoryService.ListAsync();
@@ -32,6 +36,7 @@ namespace Module4.Controllers
 
         // GET api/<CategoriesController>/5
         [HttpGet("{id}")]
+        [ResponseHeader("Another-Filter-Header", "Another Filter Value")]
         public string Get(int id)
         {
             return "value";

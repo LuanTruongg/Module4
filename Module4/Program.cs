@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using Module4.Data;
+using Module4.Filter;
 using Module4.Repositories;
 using Module4.Services;
 using System.Reflection.Metadata;
@@ -20,6 +22,7 @@ builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+//builder.Services.AddScoped<LoggingResponseHeaderFilterService>();
 using (var context = new AppDbContext())
 {
     context.Database.EnsureCreated();
@@ -42,5 +45,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapControllerRoute("default", "{controller=ResponseHeader}/{action=index}/{id?}");
 
 app.Run();
